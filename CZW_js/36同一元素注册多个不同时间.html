@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<input type="button" value="我是按钮" id="but1" />
+	<script src="common.js"></script>
+	<script>
+		myDX("but1").onclick=f1;
+		myDX("but1").onmouseover=f1;
+		myDX("but1").onmouseout=f1;
+		function f1(e){
+			switch (e.type) {
+				case "click":
+				alert("我被点了");
+				break;
+				case "mouseover":
+				alert("我被摸了");
+				break;
+				case "mouseout":
+				alert("我被甩了");
+				break;
+			}
+
+		};
+	</script>
+
+</body>
+
+</html>

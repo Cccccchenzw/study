@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>DOM</title>
+	<style type="text/css">
+		.red {
+			color: red;
+		}
+		.green {
+			color: green;
+		}
+		.yellow {
+			color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>奔驰S32OL</li>
+		<li class="bm">宝马740LI</li>
+		<li id="A7">奥迪A7</li>
+		<li>大众Bora</li>
+	</ul>
+	<script type="text/javascript">
+		//获取元素
+		var benchi=document.querySelector("li");
+		console.log(benchi.innerHTML);
+		var baoma=document.querySelector(".bm");
+		console.log(baoma.innerHTML);
+		var aodi=document.querySelector("#A7");
+		console.log(aodi.innerHTML);
+		var all=document.querySelectorAll("li");
+		console.log(all);
+		// 修改样式
+		benchi.onclick=function(){
+			// classList.add()方法 一次只能做一件事
+			benchi.classList.add("red");
+		}
+		aodi.onclick=function(){
+			benchi.classList.remove("red");
+		}
+		baoma.onclick=function(){
+			// classList.toggle()方法 有则删无则加
+			baoma.classList.toggle("yellow");
+			console.log(baoma.classList.contains("yellow"));
+			console.log(all[1].classList.item(1));
+		}
+		//自定义属性
+
+	</script>
+
+	<p data-school-name="itcast">传智播客</p>
+	<p data-name="itcast">传智播客</p>
+
+<!--取值-->
+<script>
+    window.onload=function(){
+        var p=document.querySelector("p");
+        /*获取自定义属性值*/
+        /*将data-后面的单词使用camel命名法连接:必须使用camel合法法获取值否则有可能无法获取到值*/
+        //var value=p.dataset["schoolname"];//data-schoolname
+        var value=p.dataset["schoolName"];//data-school-name
+        console.log(value);
+    }
+</script>
+</body>
+</html>

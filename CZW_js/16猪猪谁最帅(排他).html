@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<input type="button" value="猪猪"/>
+	<input type="button" value="猪猪"/>
+	<input type="button" value="猪猪"/>
+	<input type="button" value="猪猪"/>
+	<input type="button" value="猪猪"/>
+	<input type="button" value="猪猪"/>
+	<script>
+		var obj=document.getElementsByTagName("input");
+		for(var i=0;i<obj.length;i++){
+			obj[i].onclick=function(){
+				for(var j=0;j<obj.length;j++){
+					obj[j].value="猪猪";
+				}
+				this.value="我最帅";
+			}
+		}
+	</script>
+
+</body>
+
+</html>

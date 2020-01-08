@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+<style>
+	#div1{
+		width: 500px;
+		height: 400px;
+		background-color: red;
+	}
+	#div2{
+		width: 400px;
+		height: 300px;
+		background-color: yellow;
+	}
+	#div3{
+		width: 200px;
+		height: 100px;
+		background-color: blue;
+	}
+</style>
+</head>
+
+<body>
+	<div id="div1">
+		<div id="div2">
+			<div id="div3">
+				
+			</div>
+		</div>
+	</div>
+	<script src="common.js" ></script>
+	<script>
+		//事件冒泡，事件里面有事件
+		myDX("div1").addEventListener("click",function(){
+			
+			alert("我是红色");
+		},false);
+		myDX("div2").addEventListener("click",function(){
+			alert("我是黄色");
+			// Window.event.cancelBubble=true;
+			
+		},false);
+		myDX("div3").addEventListener("click",function(){
+			alert("我是蓝色");
+
+		},false);
+		document.body.addEventListener("click",function(e){
+			e.stopPropagation();//火狐的方法
+			// console.log(e);
+			alert("我是body");
+		},false);
+		//如何阻止事件冒泡？ 有问题测试不通过
+		// Window.event.cancelBubble=true;
+		//e.stopPropagation();火狐的方法
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AJAX</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function aajaxx(method,url,params){
+			method=method.toUpperCase(method);
+			params=params||null;
+			if (params==="object") {
+				var tempArr=[];
+				for (var key in params){
+					var value=params[key];
+					tempArr.push(key+"="+value);
+				}
+				params=tempArr.join("&");
+			}
+			if (method=="GET") {
+				url=url+"?"+params;
+			}
+			var xhr=new XMLHttpRequest();
+			xhr.open(method,url);
+			var data=null;
+			if (method=="POST") {
+				xhr.setRequestHeader("Contene-Type","application/x-www-form-urlencoded");
+				data=params;
+			}
+			xhr.send(data);
+			xhr.onreadystatechange=function(){
+			if (this.readyState!==4) return 
+				console.log(this.responseText);
+			};
+		}
+		aajaxx("GET","time.php",{ id : 1});
+		aajaxx("POST","add2.php",{ key1 : "value1" , key2 : "value2"});
+	</script>
+</body>
+</html>

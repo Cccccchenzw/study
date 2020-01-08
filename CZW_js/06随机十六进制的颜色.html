@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+	<style >
+		div{
+			width: 600px;
+			height: 400px;
+			background-color: pink;
+		}
+	</style>
+</head>
+
+<body>
+	<script type="text/javascript">	
+		//自定义函数，获取颜色，
+		function getColour(){
+			var str="#";
+			var arr=["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+				for (var i=0;i<6;i++){
+				var sum=parseInt(Math.random()*16);
+				str+=arr[sum];
+			}
+			return str;
+		}
+	window.onload=function() {
+		document.getElementById("dv").style.backgroundColor=getColour();
+	}
+	console.log(getColour());
+	</script>
+
+</body>
+<div id="dv"></div>
+</html>

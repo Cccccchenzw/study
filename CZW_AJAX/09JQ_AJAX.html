@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JQuery_Ajax</title>
+</head>
+<body>
+	<script src="jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		// $.ajax("time.php");
+		//最基础的调用
+		$.ajax("time.php",{
+			type: "post",
+			success: function (res) {
+				console.log(res);
+			}
+		})
+		//完整版
+		$.ajax({
+			url: "json.php",
+			type: "get",
+			beforeSend: function (xhr) {
+				// send()之前触发
+				console.log("beforeSend",xhr);
+			},
+			data: {id: 1,name: "张三"},
+			dataType: "json",
+			success: function (res) {
+				// 只有请求成功(状态码200)才会执行 而原生JS不成功也执行
+				console.log("success",res);
+			},
+			error: function (xhr) {
+				// 只有请求不成功(状态码不是200)才会执行
+				console.log("error",xhr);
+			},
+			complete: function (xhr) {
+				console.log("complete",xhr);
+			}
+		})
+		//其他操作
+		$(document).ajaxStart(function(){
+			alert("1");
+		});
+		$(document).ajaxStop(function(){
+			alert("0");
+		});
+	</script>
+</body>
+</html>

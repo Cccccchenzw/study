@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<input type="button" value="显示图片" id="but"/>
+	<img alt="111" src='' id="img001"/>
+	<script type="text/javascript">	
+		var pic=document.getElementById("but");
+			pic.onclick=function(){
+			var picset=document.getElementById("img001");
+			picset.src="../4.jpg";//?路径问题
+			picset.width=400;
+			picset.height=300;
+		}
+	</script>
+</body>
+
+</html>

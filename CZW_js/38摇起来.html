@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+	<style>
+		img{
+			width: 300px;
+			height: 200px;
+		}
+		div{
+			position: absolute;
+		}
+	</style>
+</head>
+
+<body>
+	<input type="button" value="摇起来吧" id="but1" />
+	<input type="button" value="停止" id="but2" />
+	<div id="div1">
+		<img src="../1.jpg" alt="">
+		<img src="../2.jpg" alt="">
+		<img src="../3.jpg" alt="">
+	</div>
+	<script src="common.js"></script>
+	<script type="text/javascript">	
+		
+		myDX("but1").onclick=function(){
+			 obj=setInterval(function(){
+				var x=parseInt(Math.random()*100+1);
+				var y=parseInt(Math.random()*100+1);
+				myDX("div1").style.left=x+"px";
+				myDX("div1").style.top=y+"px";
+			},100);
+		};
+		myDX("but2").onclick=function(){
+			window.clearInterval(obj);
+		};
+	</script>
+
+</body>
+
+</html>

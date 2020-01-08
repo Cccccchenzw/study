@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<input type="button" value="点我变色" id="but1" />
+	<ul id="ul1">
+		<li>奔驰</li>
+		<li>宝马</li>
+		<li>奥迪</li>
+		<li>大众</li>
+		<li>丰田</li>
+		<li>马自达</li>
+	</ul>
+	<input type="button" value="点我还原" id="but2" />
+	<script src="common.js"></script>
+	<script>
+		myDX("but1").onclick=function(){
+			var obj=myDX("ul1").getElementsByTagName("li");
+			for(var i=0;i<obj.length;i++){
+				obj[i].style.backgroundColor=(i%2==0?"yellow":"red");
+			}
+		};
+		myDX("but2").onclick=function(){
+			var obj=myDX("ul1").getElementsByTagName("li");
+			for(var i=0;i<obj.length;i++){
+				obj[i].style.backgroundColor="";
+			}
+		};
+	</script>
+
+</body>
+
+</html>

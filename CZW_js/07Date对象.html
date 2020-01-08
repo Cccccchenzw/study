@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<script type="text/javascript">	
+		// var time1=new Date();
+		// console.log(time1);
+		// var time2=Date.now();//得到毫秒，以1970年0000起计算
+		// console.log(parseInt(time2/(60*1000*60*24*365)));
+		// console.log(time1.getFullYear());//获取年份,月份(月份要+1),获取日期,获取小时数,获取分钟,获取秒钟,获取星期
+		// console.log(time1.getMonth()+1);
+		// console.log(time1.getDate());
+		// console.log(time1.getHours());
+		// console.log(time1.getMinutes());
+		// console.log(time1.getSeconds());
+		// console.log(time1.getDay());
+		// console.log(time1.toString());//与console.log(time1);效果一样
+		// console.log(time1.toDateString());//英文年月日,中文年月日
+		// console.log(time1.toLocaleDateString());
+		// console.log(time1.toTimeString());//英文时间,中文时间
+		// console.log(time1.toLocaleTimeString());
+		// console.log(time1.valueOf());//毫秒值
+
+		//格式化时间
+		function getNewTime(dt){
+			var year=dt.getFullYear();
+			var month=dt.getMonth()+1;
+			var day=dt.getDate();
+			var hour=dt.getHours();
+			var minute=dt.getMinutes();
+			var second=dt.getSeconds();
+			function judge(a){
+				return a>=10?a:"0"+a;
+			}
+			month=judge(month);
+			day=judge(day);
+			hour=judge(hour);
+			minute=judge(minute);
+			second=judge(second);
+			return year+"年"+month+"月"+day+"日---"+hour+"时"+minute+"分"+second+"秒";
+		}
+		console.log(getNewTime(new Date()));
+	</script>
+
+</body>
+
+</html>

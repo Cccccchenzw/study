@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+	<title>标准适配方案</title>
+	<style type="text/css">
+		div {
+			width: 200px;
+			height: 500px;
+			background: rgba(125,125,125,.6);
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<script type="text/javascript">
+		//touch是移动端的触摸事件,而且是一组事件
+		//1.touchstart  触摸开始的时候
+		//2.touchmove	触摸之后移动
+		//3.touchend	触摸结束即离开屏幕
+		//4.touchcancel 被迫终止触摸(来电 弹窗消息)
+		var div=document.querySelector("div");
+		div.addEventListener("touchstart",function(e){
+			console.log("开始有人摸我");
+			console.log(e);
+		});
+		div.addEventListener("touchmove",function(e){
+			console.log("有人一直持续摸我");
+			console.log(e);
+		});
+		div.addEventListener("touchend",function(e){
+			console.log("终于没人摸我理我哈啊");
+			console.log(e);
+		});
+		div.addEventListener("touchcansel",function(){
+			console.log("被迫结束摸我");
+		});
+		//事件对象TouchEvent:
+		// touchList:触摸点的集合 一个手指触摸就是触摸点
+		//1.changedTouch 改变后的触摸集合
+		//2.targetTouch	当前元素的触摸点集合
+		//3.touchs 页面上所有元素触摸点的集合
+		// *****触摸点在每个事件触摸的时候是怎么样？
+		//1.changedTouch在每个事件都会记录触摸点
+		//2.targetTouch,touchs在离开屏幕的时候无法记录触摸点
+		// 在每个触摸点中会记录当前触摸点的坐标
+		// e.touchs[0]第一个触摸点
+		// clientX clientY 基于浏览器窗口 (视口)
+		// pageX pageY	基于页面(视口)
+		// screenX screenY	基于屏幕
+
+	</script>
+</body>
+</html>

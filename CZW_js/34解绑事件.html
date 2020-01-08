@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<input type="button" value="点我点我1" id="but1" />
+	<input type="button" value="取消操作1" id="but2" />
+	<br>
+	<input type="button" value="点我点我2" id="but3" />
+	<input type="button" value="取消操作2" id="but4" />
+	<script src="common.js" ></script>
+	<script>
+		myDX("but1").onclick=function(){
+			alert("happy");
+		};
+		myDX("but2").onclick=function(){
+			myDX("but1").onclick=null;
+		};//解绑事件1
+		function f1(){
+			alert("sad");
+		}
+		function f2(){
+			alert("normal");
+		}
+		myDX("but3").addEventListener("click", f1,false);
+		myDX("but3").addEventListener("click",f2,false);
+		myDX("but4").onclick=function(){
+			alert("解绑了");
+			myDX("but3").removeEventListener("click",f1,false);
+				};
+		// 解绑事件的第二种方式
+		/*解绑事件的第三种方式，需要兼容代码
+		*myDX("but3").attachListener("on事件类型", f1(命名函数));绑定事件
+		*
+		*myDX("but3").detachListener("on事件类型", f1(函数名字));解绑事件
+		*/
+	</script>
+</body>
+
+</html>

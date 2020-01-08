@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BC</title>
+	<style type="text/css">
+		div {
+			background: url(images/6.jpg) no-repeat;
+			width: 500px;
+			height: 375px;
+			border-radius: 15px;
+			position: relative;
+			top: 0;
+			left: 702px;
+		}
+		div:hover::after {
+			content: "";/*一定要写 不然母的效果*/
+			position: absolute;
+			border: 15px solid rgba(200, 200, 200, 0.5);
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			border-radius: 15px;
+			box-sizing: border-box;
+		}
+		@font-face {  
+	  	font-family: "icomoon";  
+	  	src:  url('fonts/icomoon.eot?7kkyc2');
+	  	src:  url('fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
+	    url('fonts/icomoon.ttf?7kkyc2') format('truetype'),
+	    url('fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
+	  	font-style: normal; 
+		}
+		span {
+			display: block;
+			height: 100px;
+			width: 500px;
+			/*background-color: pink;*/
+			border: 20px solid skyblue;
+			margin: 10px auto; 
+			border-radius: 15px;
+			font-family: "icomoon";
+			position: relative;
+		}
+		span::before {
+			content: "\ea0f";
+			position: absolute;
+			top: 3px;
+			right: 6px;
+			font-size: 50px;
+		}
+		span:hover {
+			color: red;
+			border-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		
+	</div>
+	<span>
+		
+	</span>
+</body>
+</html>

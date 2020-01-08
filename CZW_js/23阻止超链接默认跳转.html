@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<!-- 阻止超链接默认跳转 return false -->
+	<a href="http://www.baidu.com" onclick="alert('阻挡你第一次');return false;">百度1</a>
+	<br>
+	<br>
+	<a id="a2" href="http://www.baidu.com" onclick="return f1();">百度2</a>
+	<script type="text/javascript">	
+		function f1(){
+			alert('阻挡你第二次');
+			return false;
+		}
+	</script>
+	<br>
+	<br>
+	<a id="a3" href="http://www.baidu.com">百度3</a>
+	<script>
+		document.getElementById("a3").onclick=function(){
+			alert("阻挡你第三次");
+			return false;
+		}
+	</script>
+	<br>
+	<br>
+	<!-- 图片转图片通过超连接 -->
+	<a  id="a1" href="../1.JPG"><img src="../5.jpg" width="300px" height="200px"></a>
+	<br>
+	<img alt="" src="" id="img1">
+	<script>
+		document.getElementById("a1").onclick=function(){
+			document.getElementById("img1").src=this.href;
+			document.getElementById("img1").style.width="200px";
+			document.getElementById("img1").style.height="300px";
+			return false;
+		}
+	</script>
+</body>
+
+</html>

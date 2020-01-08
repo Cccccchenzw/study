@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>弹性布局</title>
+	<style type="text/css">
+		div {
+			width: 800px;
+			height: 888px;
+			background-color: skyblue;
+			margin: 20px auto;
+			display: flex;
+			flex-direction: column;
+		}
+		header {
+			width: 100%;
+			height: 60px;
+			background-color: pink;
+		}
+		main {
+			width: 100%;
+			background-color: deeppink;
+			flex: 1;
+			/*占据剩余空间的100%*/
+			display: flex;
+		}
+		main article {
+			background-color: yellow;
+			flex: 1;
+		}
+		main aside {
+			background-color: darkblue;
+			flex: 4;
+		}
+		footer {
+			width: 100%;
+			height: 70px;
+			background-color: purple;
+		}
+	</style>
+</head>
+<body>
+	<!-- 盒子的宽高会随着盒子的变化而变化----弹性盒子 -->
+	<div>
+		<header></header>
+		<main>
+			<article></article>
+			<aside></aside>
+		</main>
+		<footer></footer>
+	</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+
+	<style>
+		div{
+			width: 300px;
+			height: 400px;
+			background-color: red;
+			border: 3px solid yellow;
+		}
+		.cls{
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- <input type="button" value="修改样式" id="but1" />
+	<input type="button" value="隐藏" id="but2" />
+	<div id="div1" style="width:300px;height:400px;background-color: red"></div>
+	<script src="common.js"></script>
+	<script>
+		myDX("but1").onclick=function(){
+			myDX("div1").style.width="150px";
+			myDX("div1").style.height="150px";
+			myDX("div1").style.backgroundColor="hotpink";
+
+		};
+		myDX("but2").onclick=function(){
+			if(this.value=="隐藏"){
+				myDX("div1").style.display="none";
+				this.value="显示";
+			}else if(this.value=="显示"){
+				myDX("div1").style.display="block";
+				this.value="隐藏";
+			}
+		};
+		//演示一
+	</script> -->
+
+	
+	<input type="button" value="隐藏" id="but2" />
+	<div id="div2"></div>
+	<script src="common.js"></script>
+	<script>
+		myDX("but2").onclick=function(){
+			if(myDX("div2").className!="cls"){
+				myDX("div2").className="cls";
+				this.value="显示";
+			}else{
+				myDX("div2").className=" ";
+				this.value="隐藏";
+			}
+		};
+	</script>
+</body>
+
+</html>
