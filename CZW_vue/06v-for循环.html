@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+        .color {
+            color: brown;
+        }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <!-- Vue实例所控制的元素区域 即为V -->
+    <div class="div1">
+        <p>{{ message }}</p>
+        <ul>
+            <li v-for="(item,i) in list" @click='light(i)' :class="{color: currentIndex===i}">索引{{ i }}------索引值：{{ item }}</li>
+        </ul>      
+        
+    </div>
+    <script>
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                message: "学习Vue!",
+                list: ['a','b','c','d','e','f'],
+                currentIndex: 0
+            },
+            methods:{
+                light(data){
+                    this.currentIndex = data;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

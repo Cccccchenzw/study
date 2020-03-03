@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>盾牌</title>
+	<style type="text/css">
+	body {
+			background-color: skyblue;
+	}
+	
+	div {
+			width: 440px;
+			margin: 250px auto;
+	}
+	div > img:nth-of-type(1) {
+		transform: translate(100px,100px) rotate(30deg);
+	}
+	div > img:nth-of-type(2) {
+		transform: translate(-100px,100px) rotate(60deg);
+	}
+	div > img:nth-of-type(3) {
+		transform: translate(100px,-100px) rotate(70deg);
+	}
+	div > img:nth-of-type(4) {
+		transform: translate(150px,100px) rotate(80deg);
+	}
+	div > img:nth-of-type(5) {
+		transform: translate(-150px,100px) rotate(90deg);
+	}
+	div > img:nth-of-type(6) {
+		transform: translate(100px,150px) rotate(44deg);
+	}
+	div > img:nth-of-type(7) {
+		transform: translate(100px,-150px) rotate(55deg);
+	}
+	div > img:nth-of-type(8) {
+		transform: translate(-150px,-100px) rotate(130deg);
+	}
+	div > img:nth-of-type(9) {
+		transform: translate(200px,-100px) rotate(330deg);
+	}
+	div:hover img {
+		transform: none;
+	}
+	div img {
+		transition: transform 500ms;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<img src="../images/shield_1_01.png">
+		<img src="../images/shield_1_02.png">
+		<img src="../images/shield_1_03.png">
+		<img src="../images/shield_1_04.png">
+		<img src="../images/shield_1_05.png">
+		<img src="../images/shield_1_06.png">
+		<img src="../images/shield_1_07.png">
+		<img src="../images/shield_1_08.png">
+		<img src="../images/shield_1_09.png">
+	</div>
+</body>
+</html>

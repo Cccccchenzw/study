@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+    .router-link-active{
+        color: crimson;
+        font-weight: 800;
+    }
+    .v-enter,
+    .v-leave-to {
+        opacity: 0;
+        transform: translate(100px,100px);
+    }
+    .v-enter-active,
+    .v-leave-active{
+        transition: all 1s ease;
+    }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+<body>
+    <!-- Vue实例所控制的元素区域 即为V -->
+    <div class="div1">
+        <!-- <a href="#/login">login</a>
+        <a href="#/register">register</a> -->
+        <!-- router-link标签默认识别为a标签 不写#的a标签-->
+        <!-- 增加replace属性 将取消前后跳转功能 -->
+        <router-link to='/login' tag='button'>login</router-link>
+        <router-link to='/register'>register</router-link>
+        
+        <transition mode='out-in'>
+            <router-view></router-view>
+        </transition>
+        <keep-alive exclude='' include=''>
+            <!-- 可以让组件保留之前浏览的内容 -->
+            <!-- 才能使用：activated();deactivated() -->
+        </keep-alive>
+        
+    </div>
+    <script>
+        var login = {
+            template:'<h1>loginXXX组件</h1>'
+        }
+        var register = {
+            template:'<h1>registerXXX组件</h1>',
+            data(){},
+            created(){
+                console.log(this.$route.query.id)//查询传递的ID值(?id=10)
+                 console.log(this.$route.params.id)//查询指定的ID值(:id=10)
+            }
+        }
+        // 创建路由对象
+        var routerObj=new VueRouter({
+            // 传递配置对象 
+            routes:[
+                // 匹配规则 每个路由规则都是一个对象 
+                // 属性一path监听路由链接地址 属性二component匹配成功则》组件模板对象
+                {path:'/',redirect:'/login'}, // 重定向redirect 默认打开指定组件
+                {path:'/login',component: login,meta:{title: '登录'}},
+                {path:'/register',component: register,meta:{title: '注册'}}
+                                //  ,children:[{path:'xxx',component: xxx}]}追加子路径
+            ]
+            // linkActiveClass: 'myclass' 第二种方式自定义激活类
+            // mode: 'history'  路径上无‘#’
+            // linkActiveClass: 'active' 改变router-link-active样式默认样式
+        })
+
+        var vm=new Vue({
+            el:".div1",
+            data:{
+               
+            },
+            methods:{},
+            // 注册监听
+            router:routerObj,
+            watch:{
+                // 监视路由事件的改变
+                '$route.path':function(newVal,oldVal){
+                    console.log('当前已离开'+ oldVal +'---欢迎进入:'+newVal)
+                }
+                //$route.path,$route.query
+            }
+        });
+        // 前置钩子，前置守卫（guard）
+        routerObj.beforeEach((to,from,next)=>{
+            window.document.title = to.meta.title
+            next()
+        })
+        //后置钩子
+//        routerObj.afterEach((to,from)=>{
+//            window.document.title = to.meta.title
+//        })
+        //导航钩子的三个参数解析:
+        // to: 即将要进入的目标的路由对象.
+        // from: 当前导航即将要离开的路由对象.
+        // next: 调用该方法后, 才能进入下一个钩子.
+        // 导航守卫补充
+        // 补充一:如果是后置钩子, 也就是afterEach, 不需要主动调用next()函数.
+        // 补充二: 上面我们使用的导航守卫, 被称之为全局守卫.
+
+    </script>
+</body>
+</html>

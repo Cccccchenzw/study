@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>元素居中</title>
+	<style type="text/css">
+		.div1 {
+			width: 500px;
+			height: 500px;
+			border-radius: 250px;
+			background-color: red;
+			margin: 150px auto;
+			position: relative;
+		}
+		.div2 {
+			width: 100px;
+			height: 100px;
+			border-radius: 30px;
+			background-color: yellow;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			/*使用transform实现居中效果 参照元素的长宽的百分之五十*/
+			transform: translate(-50%,-50%);
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<div class="div2"></div>
+	</div>
+</body>
+</html>

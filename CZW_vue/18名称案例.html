@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拼接名称</title>
+
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+<body>
+    <div class="div1">
+      <input type="text" v-model='firstName1' @keyup='get1'> +
+      <input type="text" v-model='lastName1' @keyup='get1'> =
+      <input type="text" v-model='fullName1'>
+      <hr>
+      <input type="text" v-model='firstName2' > +
+      <input type="text" v-model='lastName2' > =
+      <input type="text" v-model='fullName2'>
+      <hr>
+      <input type="text" v-model='allName'>  
+    </div>
+    <script>
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                firstName1 : '',
+                lastName1 : '',
+                fullName1 : '',
+                firstName2 : '',
+                lastName2 : '',
+                fullName2 : ''
+            },
+            methods:{
+                get1(){
+                    this.fullName1=this.firstName1 + '-' + this.lastName1 }
+            },
+            watch:{
+                // 监听数据变化 触发对应函数
+                // "firs-tName2"中间有-需要加"""
+                firstName2:function(){this.fullName2=this.firstName2 + '-' + this.lastName2 },
+                lastName2:function(){this.fullName2=this.firstName2 + '-' + this.lastName2 }
+            },
+            computed:{
+                // 计算属性 本质是方法 名称当做属性使用
+                // 不要加（）去调用 只要数据变化 链式效应
+                'allName':function(){
+                    return this.fullName1 + '-----' + this.fullName2
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>钢琴导航</title>
+	<style type="text/css">
+		#mune {
+			margin: 0 auto;
+			width: 960px;
+			height: 60px;
+			background-color: rgba(128,0,128,.5);
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		li {
+			margin: 0;
+			padding: 0;
+			float: left;
+			width: 120px;
+			height: 60px;
+			position: relative;
+			overflow: hidden;
+		}
+		a {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			text-decoration: none;
+			display: block;
+			font-size: 30px;
+			line-height: 60px;
+			text-align: center;
+			z-index: 100;
+		}
+		span {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 60px;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="mune">
+		<ul>
+			<li><a href="">导航一</a><span></span></li>
+			<li><a href="">导航二</a><span></span></li>
+			<li><a href="">导航三</a><span></span></li>
+			<li><a href="">导航四</a><span></span></li>
+			<li><a href="">导航五</a><span></span></li>
+			<li><a href="">导航六</a><span></span></li>
+			<li><a href="">导航七</a><span></span></li>
+			<li><a href="">导航八</a><span></span></li>
+		</ul>
+		<!-- 音频标签 -->
+		<div>
+			<!-- <audio src="images/1.ogg" controls="controls"></audio> -->
+			<audio autoplay muted width="420" src="images/1.ogg"></audio>
+			<audio src="images/2.ogg"></audio>
+			<audio src="images/3.ogg"></audio>
+			<audio src="images/4.ogg"></audio>
+			<audio src="images/5.ogg"></audio>
+			<audio src="images/6.ogg"></audio>
+			<audio src="images/7.ogg"></audio>
+			<audio src="images/8.ogg"></audio>
+		</div>
+	</div>
+	<script src="jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#mune li").click(function(){
+				var ind=$(this).index();
+				$("audio").get(ind).load();	
+				$("audio").get(ind).play();		//音频播放问题	
+			});
+			$("#mune li").mouseenter(function(){
+				$(this).children("span").stop().animate({top:0});
+			});
+			$("#mune li").mouseleave(function(){
+				$(this).children("span").stop().animate({top:60});
+			});
+			$(document).on("keydown",function(e){
+				var code=e.keyCode;
+				if (code>=49&&code<=57) {
+					$("#mune li").eq(code-49).trigger("mouseenter");
+				}
+			});
+			$(document).on("keyup",function(e){
+				var code=e.keyCode;
+				if (code>=49&&code<=57) {
+					$("#mune li").eq(code-49).trigger("mouseleave");
+				}
+			});
+
+
+
+		})
+	</script>
+</body>
+</html>

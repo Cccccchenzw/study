@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+
+    <script src="./lib/vue.js"></script>
+    <script src="http://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+</head>
+<body>
+    <div class="div1">
+
+        
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">添加品牌</h3>
+              </div>
+              <div class="panel-body form-inline">
+                    <label>
+                        name:
+                        <input type="text" v-model="name" class="form-control">
+                    </label>
+                    <input type="button" value="添加" @click="add" class="btn btn-primary">
+              </div>
+        </div>
+        
+        
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in list" :key="item.id">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.ctime | dateFormat }}</td>
+                    <td><a href="#1">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <input type="button" value="get请求" @click="getInfomation">
+        <input type="button" value="post请求" @click="postInfomation">
+        <input type="button" value="jsonp请求" @click="jsonpInfomation">
+    </div>
+    <script>
+         Vue.filter('dateFormat',function(){
+            var time=new Date();
+            var y=time.getFullYear();
+            var m=time.getMonth()+1;
+            var d=time.getDate();
+            var hh=time.getHours();
+            var mm=time.getMinutes();
+            var ss=time.getSeconds();
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+        });
+
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                name:"",
+                list:[
+                    {id:1 , name:"奔驰" , ctime:new Date() },
+                    {id:2 , name:"宝马" , ctime:new Date() },
+                    ]
+            },
+            created(){
+                alert(000)
+                this.getInfomation()
+            },
+            methods:{
+                add(){
+                    if(this.id == '' || this.name == ''){
+                        alert("数据为空!");
+                    } else {
+                        var car={id:this.id,name:this.name,ctime:new Date()};
+                        this.list.push(car);
+                        this.id=this.name="";}                   
+                    },
+                getInfomation(){
+                    this.$http.get('http://vue.studyit.io/api/getprodlist').then(res=>{
+                        if(res.body.status === 0){
+                            this.list=res.message
+                        }else{
+                            alert("获取数据失败")
+                        }
+                    })
+                },
+                postInfomation(){
+                    this.$http.post('http://vue.studyit.io/api/post',{},{emulateJSON:true}).then(res=>{
+                        console.log(res.body);
+                    })
+                },
+                jsonpInfomation(){
+                    this.$http.jsonp('http://vue.studyit.io/api/jsonp').then(res=>{
+                        console.log(res);
+                    })
+                }
+            }
+        });
+       
+    </script>
+</body>
+</html>

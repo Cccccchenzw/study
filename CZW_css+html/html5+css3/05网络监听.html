@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>InterNet</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//网络连接成功后会执行
+		window.addEventListener("online",function(){
+			console.log("success");
+		})
+		//网络连接失败后会执行
+		window.addEventListener("offline",function(){
+			console.log("failed");
+		})
+	</script>
+</body>
+</html>

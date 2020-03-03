@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>贪吃蛇</title>
+	<style type="text/css">
+		.map {
+			height: 800px;
+			width: 800px;
+			background-color: gray;
+			position: relative;
+		}
+		.food {
+			height: 20px;
+			width: 20px;
+			background-color: green;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="map">
+		<div class="food" id="div2"></div>
+	</div>
+	<script src="common.js"></script>
+	<script type="text/javascript">
+		//小方块X轴范围0-780 Y轴范围0-780
+		(function (window){
+			function Random(){
+			}
+			Random.prototype.getRandom=function(min,max){
+				return Math.floor(Math.random()*(max-min)+min);
+			}
+			window.Random=new Random();
+		})(window); 
+		//随机食物颜色
+		function getColour(){
+			var str="#";
+			var arr=["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+				for (var i=0;i<6;i++){
+				var sum=parseInt(Math.random()*16);
+				str+=arr[sum];
+			}
+			return str;
+		}
+		var x=Random;
+		var y=Random;
+		var divx=x.getRandom(0,40)*20;
+		var divy=y.getRandom(0,40)*20;
+		myDX("div2").style.left=divx+"px";
+		myDX("div2").style.top=divy+"px";
+		myDX("div2").style.backgroundColor=getColour();
+		console.log(divx+"------"+divy);
+
+	</script>
+</body>
+</html>

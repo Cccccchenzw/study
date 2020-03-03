@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跑马灯</title>
+
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    
+    <div class="div1">
+        <input type="button" value="推塔" @click="move">
+        <input type="button" value="发育" @click="stop">
+        <h1>{{ message }}</h1>
+    </div>
+    <script>
+        // 会自动监听 自己Vue对象改变 就会实时更新 不用关心因为数据问题导致的页面渲染
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                message:"！！人在塔在！！",
+                time:null
+            },
+            methods:{
+                move:function(){
+                    // var _this=this;
+                    // var time=setInterval(function(){
+                    //     var start=_this.message.substring(0,1);
+                    //     var end=_this.message.substring(1);
+                    //     _this.message=end+start;
+                    //     console.log(_this.message);
+                    // },300)
+                    // 箭头函数改变指向
+                    if(this.time!=null){
+                        return
+                    } else {
+                        this.time=setInterval(()=>{                     
+                        var start=this.message.substring(0,1);
+                        var end=this.message.substring(1);
+                        this.message=end+start;
+                    },300)}
+                },
+                stop:function(){
+                    clearInterval(this.time);
+                    this.time=null;
+                },
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+    .v-enter,
+    .v-leave-to {
+        opacity: 0;
+        transform: translateX(150px);
+    }
+    .v-enter-active,
+    .v-leave-active{
+        transition: all 1s ease;
+    }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <!-- Vue实例所控制的元素区域 即为V -->
+    <div class="div1">
+        <a href="#1" @click.prevent="flag='in'">in</a>
+        <a href="#1" @click.prevent="flag='out'">out</a>
+        <!-- <in v-if='flag'></in>
+        <out v-else='flag'></out> -->
+        <!-- //第二种方式 :is属性绑定对应的组件名 注意区分字符串和变量-->
+       <transition mode='out-in'>
+           <!-- mode属性设置组件切换方式 -->
+        <component :is="flag">
+
+        </component>   
+       </transition>   
+    </div>
+    <script>
+        Vue.component('in',{
+            template:"<h2>in组件</h2>"
+        })
+        Vue.component('out',{
+            template:"<h2>out组件</h2>"
+        })
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                flag:'in'
+            }
+        });
+    </script>
+</body>
+</html>

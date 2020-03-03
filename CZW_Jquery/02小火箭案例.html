@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>a</title>
+	<style type="text/css">
+		body {
+			width: 6000px;
+			height: 6000px;
+		}
+		img {
+			display: none;
+			position: fixed;
+			bottom: 50px;
+			right: 50px;
+		}
+	</style>
+</head>
+<body>
+	<img src="images/gotop.png">
+	<script src="jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+	$(window).scroll(function(){
+		console.log($(window).scrollTop());
+		console.log($(window).scrollLeft());
+	})
+	</script>
+	<script type="text/javascript">
+		$(window).scroll(function(){
+			if ($(window).scrollTop()>=600) {
+				// $("img").css("display","block");
+				$("img").fadeIn(1000);
+			}
+			if ($(window).scrollTop()<=600) {
+				// $("img").css("display","none");
+				$("img").fadeOut(1000);
+			}
+		})
+		$("img").mouseenter(function(){
+			// $("img")[0].src="images/gotop.gif";方式一
+			$("img").attr("src","images/gotop.gif");//方式二
+		})
+		$("img").mouseleave(function(){
+			$("img").attr("src","images/gotop.png");
+		})
+		$("img").click(function(){
+			$("html,body").stop().animate({scrollTop:0},1000);
+			// $("html,body").scrollTop(0);
+			/* 此处不能写window,window对应的是pageYOffset,为了兼容,这样写最好
+			之前兼容代码:
+			function getScroll(){
+     	 return {
+        	left:window.pageYOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        	top:window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+      			}
+   				 }*/
+		})
+	</script>
+</body>
+</html>

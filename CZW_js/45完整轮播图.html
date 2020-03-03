@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图F</title>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	#div1 {
+		width: 510px;
+		height: 343px;
+		border: 2px solid red;
+		box-sizing: border-box;
+		margin: 150px auto;
+		position: relative;
+		padding: 3px 3px 3px 3px;
+	}
+	#div2 {
+		width: 500px;
+		height: 333px;
+		overflow: hidden;
+		position: relative;
+	}
+	img {
+		width: 500px;
+		height: 333px;
+		vertical-align: top;
+	}
+	ul {
+		list-style-type: none;
+		width: 1000%;
+		/*设置宽度为父级的10倍 可以放10张图 不然一行只能容纳一张图 宽度问题*/
+		position: absolute;
+	}
+	li {
+		float: left;
+	}
+	#div4 {
+		display: none;
+	}
+	#div2 span {
+		width: 50px;
+		height: 50px;
+		background-color: rgba(153,144,255,.3);
+		position: absolute;
+		top: 150px;
+		line-height: 45px;
+		z-index: 999;
+		font-size: 40px;
+		cursor: pointer;
+		text-align: center;
+	}
+	#div2 span:hover {
+		background-color:rgba(0,0,0,.5);
+	}
+	#spanright {
+		right: 0;
+	}
+	#div3 {
+		width: 70px;
+		height: 20px;
+		position: absolute;
+		z-index: 999;
+		bottom: 5px;
+		right: 10px;
+		cursor: pointer;
+	}
+	#div3 span {
+		width: 20px;
+		height: 20px;
+		background-color: white;
+	}
+	#div3 span.current{
+			background-color: orangered;
+      		color: #fff;
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2">
+			<ul>
+				<li><a href="#"><img src="../1.jpg"></a></li>
+				<li><a href="#"><img src="../2.jpg"></a></li>
+				<li><a href="#"><img src="../3.jpg"></a></li>
+				<li><a href="#"><img src="../4.jpg"></a></li>
+				<li><a href="#"><img src="../5.jpg"></a></li>
+			</ul>
+			<div id="div4">
+			<span id="spanleft"><</span>
+			<span id="spanright">></span>
+			</div>
+		</div>
+		<div id="div3">
+			<span class="current">1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span>5</span>		
+		</div>
+	</div>
+	<script src="common.js"></script>
+	<script type="text/javascript">
+		var pic=0;//全局变量 控制同步
+		var obj=myDX("div2").children[0];
+		var imgW=myDX("div2").offsetWidth;
+		//  为span添加鼠标进入事件 
+		var spanobj=myDX("div3").children;
+		for (var i = 0; i < spanobj.length; i++) {
+			spanobj[i].setAttribute("index",i);
+			spanobj[i].onmouseover=function(){
+				for (var j = 0; j < spanobj.length; j++) {
+					spanobj[j].removeAttribute("class");
+				}
+				this.className="current";
+				pic=this.getAttribute("index");
+				animate(obj,-pic*imgW);
+			}
+		}
+		// 克隆
+		obj.appendChild(obj.children[0].cloneNode(true));
+		// 为左右移动添加事件
+		myDX("div1").onmouseover=function(){
+			myDX("div4").style.display="block";
+			clearInterval(timeStop);
+		};
+		myDX("div1").onmouseout=function(){
+			myDX("div4").style.display="none";
+			timeStop=setInterval(automove,1000);
+		};
+		// var index1=0;
+		// ***理顺逻辑***
+		myDX("spanleft").onclick=function(){
+			if (pic==0) {
+				pic=5;
+				obj.style.left=-pic*imgW+"px";
+			}
+			pic--;
+			animate(obj,-pic*imgW);
+			for (var n = 0; n < spanobj.length; n++) {
+				spanobj[n].className="";
+			}
+			spanobj[pic].className="current";
+			// if (index1>0) 
+			// {
+			// 	index1--;
+			// 	animate(obj,-index1*imgW);
+			// }
+		};
+		myDX("spanright").onclick=automove;
+		function automove(){
+			if (pic==obj.children.length-1) {
+				pic=0;
+				obj.style.left=0+"px";
+			}
+			pic++;
+			animate(obj,-pic*imgW);
+			if (pic==obj.children.length-1) {
+				spanobj[spanobj.length-1].className="";
+				spanobj[0].className="current";
+			}else{
+				for (var k = 0; k < spanobj.length; k++) {
+					spanobj[k].removeAttribute("class");
+				}
+				spanobj[pic].className="current";
+			}
+			// if (index1<myDX("div2").children[0].children.length-1) 
+			// {
+			// 	index1++;
+			// 	animate(obj,-index1*imgW);
+			// }
+		};
+		//自动播放 调用即可
+		var timeStop=setInterval(automove,1000);
+		//无缝效果
+		// var curry=0;
+		// function move1(){
+		// 	clearInterval(timeStop);		
+		// 	curry-=10;
+		// 	if (curry<-2500) {
+		// 		// clearInterval(timeStop);
+		// 		// var curry=0;
+		// 		obj.style.left=0+"px";
+		// 		curry=0;
+		// 	}else {
+		// 		obj.style.left=curry+"px";
+		// 	}
+		// 	console.log(curry);
+		// }
+		// var timeStop=setInterval(move1,20);
+		// myDX("div2").onmouseover=function(){
+		// 	clearInterval(timeStop);
+		// 	// obj.style.left=0+"px";
+		// };
+		// myDX("div2").onmouseout=function(){
+		// 	timeStop=setInterval(move1,20);
+		// };
+	</script>
+		
+
+
+</body>
+
+</html>

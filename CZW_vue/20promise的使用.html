@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    //1.定时器
+    // setTimeout(()=>{
+    //   console.log("hello Promise")
+    // },1000)
+    //2.promise封装
+    //resolve,reject本身就是函数
+    // new Promise((resolve,reject)=>{
+    //     setTimeout(()=>{
+    //     console.log("hello Promise111")
+    //       setTimeout(()=>{
+    //         console.log("hello Promise222")
+    //       },1000)
+    //   },1000)
+    // })
+    new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          console.log("hello PROMISE111")
+          resolve('ajax-data')
+          // reject('error-data')
+      },1000)}).then((data)=>{     
+            console.log(data)
+      }).catch((data)=>{
+        console.log(data)
+      })
+
+  </script>
+</body>
+</html>

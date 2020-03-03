@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+
+    <script src="./lib/vue.js"></script>
+    <script src="http://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+</head>
+<body>
+    <div class="div1">
+        <input type="button" value="get请求" @click="getInfomation">
+        <input type="button" value="post请求" @click="postInfomation">
+        <input type="button" value="jsonp请求" @click="jsonpInfomation">
+    </div>
+    <script>
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                
+            },
+            methods:{
+                // Vue.http.option.root='http://vue.studyit.io/' 全局配置接口域名 单独请求时前面不带/
+                getInfomation(){
+                    this.$http.get('http://vue.studyit.io/api/getlunbo').then(function(res){
+                        console.log(res);
+                    })
+                },
+                // Vue.http.option.emulateJSON=true 全局配置
+                postInfomation(){
+                    this.$http.post('http://vue.studyit.io/api/post',{},{emulateJSON:true}).then(res=>{
+                        console.log(res.body);
+                    })
+                },
+                jsonpInfomation(){
+                    this.$http.jsonp('http://vue.studyit.io/api/jsonp').then(res=>{
+                        console.log(res);
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+</html>

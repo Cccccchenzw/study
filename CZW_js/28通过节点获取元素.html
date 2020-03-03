@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+	<style>
+		div{
+			width: 300px;
+			height: 350px;
+			border: 2px solid hotpink;
+		}
+		ul{
+			list-style-type: none;
+		}
+	</style>
+</head>
+
+<body>
+	<input type="button" value="变色" id="but1" />
+	<script src="common.js" ></script>
+	<div id="div1">
+		<a href="http://www.baidu.com" target="blank">百度一下</a>
+		<p>这是一个p标签</p>
+		<span>这是一个span标签</span>
+		<p>这是一个p标签</p>
+		<span>这是一个span标签</span>
+		<p>这是一个p标签</p>
+		<span>这是一个span标签</span>
+	</div>
+	<script>
+		myDX("but1").onclick=function(){
+			var obj1=myDX("div1").childNodes;
+			for(var i=0;i<obj1.length;i++){
+				if(obj1[i].nodeType==1&&obj1[i].nodeName=="P"){
+					obj1[i].style.backgroundColor="pink";
+				}
+			}
+		};
+	</script>
+	<br>
+	<br>
+	<br>
+	<br>
+	<input type="button" value="隔行变色" id="but2" />
+	<ul id="ul1">
+		<li>奔驰</li>
+		<li>宝马</li>
+		<li>奥迪</li>
+		<li>沃尔沃</li>
+		<li>玛萨拉蒂</li>
+		<li>保时捷</li>
+		<li>法拉利</li>
+	</ul>
+	<script type="text/javascript">
+		myDX("but2").onclick=function(){
+			var obj2=myDX("ul1").childNodes;
+			var count=0;
+			for(var j=0;j<obj2.length;j++){
+				if(obj2[j].nodeType==1&&obj2[j].nodeName=="LI"){
+					obj2[j].style.backgroundColor=(count%2==0?"red":"yellow");
+					count++;
+				}
+			}
+		};
+	</script>
+</body>
+
+</html>

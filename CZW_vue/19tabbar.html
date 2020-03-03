@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TabBar</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #tab-bar {
+        /* width: 100%; */
+        display: flex;
+        background-color: cornflowerblue;
+        position: fixed;
+        bottom: 0;
+        left: 0; 
+        right: 0;
+        /* box-shadow: 0 -3px 1px rgba(111,111,111,.8); */
+        }
+      .tab-bar-item {
+        flex:1;
+        text-align: center;
+        height: 49px;
+      }
+      .tab-bar-item img {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+      }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+<body>
+  <div id="foo">
+    <tabbar></tabbar>
+  </div>
+  <template id="temp">
+    <div id="app">
+      <div id="tab-bar">
+        <div class="tab-bar-item">
+          <img src="./tabbar/SuperMall/src/assets/img/tabbar/home.svg" alt="">
+          <div>首页</div>
+        </div>
+        <div class="tab-bar-item">
+          <img src="./tabbar/SuperMall/src/assets/img/tabbar/category.svg" alt="">
+          <div>分类</div>
+        </div>
+        <div class="tab-bar-item">
+          <img src="./tabbar/SuperMall/src/assets/img/tabbar/shopcart.svg" alt="">
+          <div>购物车</div>
+        </div>
+        <div class="tab-bar-item">
+          <img src="./tabbar/SuperMall/src/assets/img/tabbar/profile.svg" alt="">
+          <div>首页</div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    Vue.component('tabbar',{
+      template:'#temp',
+    })
+
+    const vm = new Vue({
+      el:'#foo',
+      data:{
+
+      },
+      methods:{
+
+      },
+      component:{
+
+      }
+    })
+  </script>
+</body>
+</html>

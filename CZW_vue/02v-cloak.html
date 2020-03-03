@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+
+    <div class="div1">
+        <!-- 解决插值表达式闪烁问题 即{{message}}内容后置出现问题 -->
+        <p v-cloak>{{ message }}</p>
+        <p v-cloak>{{ message2 }}</p>
+        <!-- 作用和{{message}}效果一样 且无后置出现问题-->
+        <h4 v-text="message">我将会被v-text="message"覆盖</h4>
+        <div v-html="message2">我也会被v-text="message2"覆盖</div>
+        <!-- v-bind是Vue中用于绑定属性的指令 -->
+        <!-- <input type="button" value="按钮" v-bind:title="mytitle + ' and more' "> -->
+        <!-- 简写：===v-bind: -->
+        <!-- <input type="button" value="按钮" :title="mytitle + ' and more' " id="btn" v-on:click="show"> -->
+        <!-- 注册事件v-on:click，v-on:mouseover...  且可简写为@-->
+        <!--  终极版-->
+        <input type="button" value="按钮" :title="mytitle + ' and more' " @click="show">
+    </div>
+    <script>
+
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                message:"123学习Vue!",
+                message2:"<h1>我是H1我最大</h1>",
+                mytitle:"this is my title"
+            },
+            methods:{
+                show:function(){
+                    alert(1);
+                }
+            }
+        });
+        // 利用DOM元素操作对象
+        // document.getElementById("btn").onclick=function(){
+        //     alert(1);
+        // }
+    </script>
+</body>
+</html>

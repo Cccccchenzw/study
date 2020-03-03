@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue-v-model</title>
+    <style>
+    .ball{
+        margin-top: 10px;
+        width: 50px;
+        height: 50px;
+        background-color: crimson;
+        border-radius: 25px;
+    }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <div class="div1">
+        <input type="button" value="我滚了" @click='flag=!flag'>
+        <transition
+        @before-enter='beforeEnter'
+        @enter='enter'
+        @after-enter='afterEnter'>
+             <div class="ball" v-show='flag'></div>
+        </transition> 
+        <!-- 实现列表过渡效果时 如果过渡元素是通过v-for循环渲染出来的 不能使用transition
+            需要使用transitionGroup
+            {加上appear可以实现页面入场效果}{tag="ul" 可以让transitionGroup渲染为指定的ul 否则自动识别为span}
+             并且必须为每一个元素设置：key属性 -->
+            <!-- ***********为移动的元素添加动画 使得整体动画更顺畅***************
+                .v-move{transition:all 0.6s ease}
+                .v-leave-active{position:absolute}
+             -->
+    </div>
+    <script>
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                flag:false
+            },
+            methods:{
+                beforeEnter(el){
+                    // 小球起始位置
+                    el.style.transform="translate(0,0)"
+                },
+                enter(el,done){
+                    el.offsetWidth
+                    // 小球终止位置
+                    el.style.transform="translate(100px,100px)"
+                    el.style.transition="all 1s ease"
+                    done()
+                },
+                afterEnter(el){
+                    this.flag=!this.flag
+                }
+            }
+        });
+    </script>
+</body>
+</html>

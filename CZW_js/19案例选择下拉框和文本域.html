@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+</head>
+
+<body>
+	<input type="button" value="选择活动" id="but1" />
+	<select name="" id="sel1">
+		<option value="1" >吃肉</option>
+		<option value="1">睡觉</option>
+		<option value="1" id="opt1">学习</option>
+		<option value="1">运动</option>
+	</select>
+	<script src="common.js"></script>
+	<script>
+		myDX("but1").onclick=function(){
+			myDX("opt1").selected=true;
+		}
+	</script>
+	<!-- disabled="disabled"不能复制能写 readonly="readonly"能复制不能写 -->
+	<textarea name="" id="text1" cols="30" rows="15"  />
+
+		好好学习
+		天天向上
+		锻炼身体
+		保护蹄子
+	</textarea>
+	<input type="button" value="提示" id="but2" />
+	<script>
+		myDX("but2").onclick=function(){
+			myDX("text1").value="听妈妈的话";
+			// myDX("text1").innerText="听爸爸的话";
+			//推荐用value，看成了表单的标签
+		}
+	</script>
+
+</body>
+
+</html>

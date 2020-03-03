@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>全屏360案例</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.section {
+			overflow: hidden;
+		}
+		.first {
+			padding-top: 88px;
+		}
+		.first .logo {
+			width: 251px;
+			height: 186px;
+			margin: 0 auto;
+			background-image: url(../images/360/logo.png);
+		}
+		.first .text {
+			width: 100%;
+			text-align: center;
+			margin-top: 88px;
+		}
+		.first .text>img {
+			margin: 0 40px;
+			opacity: 0.3;
+			transition: margin 1s,opacity 1s;
+		}
+		.first.current .text>img {
+			margin: 0 5px;
+			opacity: 1;
+		}
+		.first .info {
+			background-image: url(../images/360/info_1.png);
+			width: 772px;
+			height: 49px;
+			margin: 30px auto;
+		}
+		.second {
+			/*display: flex;*/
+		}
+		.second > div {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+		.second .shiled {
+			/*flex: 1;*/
+			width: 440px;
+			font-size: 0;/*效果很好*/
+			/*
+			************
+			图片的对齐方式是基线对齐 就算margin为0 距离还是会大
+			************
+			*/
+		}
+		.second .shiled img {
+			/*padding: 0px;
+			vertical-align: top;
+			border: 0;*/
+			transition: transform 1s;
+		}
+		.second .info {
+			/*flex: 1;*/
+			width: 635px;
+			height: 309px;
+			background-image: url(../images/360/info_2.png);
+		}
+		.second .shiled > img:nth-of-type(1) {
+		transform: translate(100px,100px) rotate(30deg);
+		}
+		.second .shiled > img:nth-of-type(2) {
+			transform: translate(-100px,100px) rotate(60deg);
+		}
+		.second .shiled > img:nth-of-type(3) {
+			transform: translate(100px,-100px) rotate(70deg);
+		}
+		.second .shiled > img:nth-of-type(4) {
+			transform: translate(150px,100px) rotate(80deg);
+		}
+		.second .shiled > img:nth-of-type(5) {
+			transform: translate(-150px,100px) rotate(90deg);
+		}
+		.second .shiled > img:nth-of-type(6) {
+			transform: translate(100px,150px) rotate(44deg);
+		}
+		.second .shiled > img:nth-of-type(7) {
+			transform: translate(100px,-150px) rotate(55deg);
+		}
+		.second .shiled > img:nth-of-type(8) {
+			transform: translate(-150px,-100px) rotate(130deg);
+		}
+		.second .shiled > img:nth-of-type(9) {
+			transform: translate(200px,-100px) rotate(330deg);
+		}
+		.second.current .shiled img {
+			transform: none;
+		}
+		.third {
+			position: relative;
+		}	
+		.third .info {
+			width: 631px;
+			height: 278px;
+			background-image: url(../images/360/info_3.png);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform:translate(-100%,-50%);
+		}
+		.third .circle {
+			width: 453px;
+			height: 449px;
+			background-image: url(../images/360/circle.png);
+			position: absolute;
+			top: 50%;
+			right: 50%;
+			transform:translate(120%,-50%);
+		}
+		.third .circle>.rocket {
+			width: 203px;
+			height: 204px;
+			background-image: url(../images/360/rocket.png);
+			position: absolute;
+			top: 650px;
+			left: -600px;
+			transition: left 1s,top 1s;
+		}
+		.third.current .circle>.rocket {
+			top: 125px;
+			left: 125px;
+			/*transform:translate(50%,50%);*/
+		}
+		.fourth {
+			position: relative;
+		}
+		.fourth .search {
+			width: 529px;
+			height: 438px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-115%,-50%);
+			overflow: hidden;
+		}
+		.fourth .search>.searchBar {
+			width: 529px;
+			height: 66px;
+			background-image: url(../images/360/search.png);
+			transform: translate(-100%);
+		}
+		.fourth .search > .searchText {
+			width: 0px;/*99px;*/
+			height: 22px;
+			background-image: url(../images/360/key.png);
+			position: absolute;
+			left: 15px;
+			top: 22px;
+		}
+		.fourth .search > .searchResult {
+			width: 529px;
+			height: 0;/*372px;*/
+			background-image: url(../images/360/result.png);
+			margin-top: -13px;
+		}
+		.fourth .info {
+			width: 612px;
+			height: 299px;
+			background-image: url(../images/360/info_4.png);
+			position: absolute;
+			left: 50%;
+			top: 30%;
+		}
+		.fourth.current .search>.searchBar {
+			transform: none;
+			transition: transform 1s;
+		}
+		.fourth.current .search > .searchText {
+			width: 99px;
+			transition: width 1s 1s steps(5); 
+		}
+		.fourth.current .search > .searchResult {
+			height: 372px;
+			transition: height 1s 2s;
+		}
+	</style>
+
+</head>
+<body>
+	<div id="360page">
+	    <div class="section first">
+	        <div class="logo"></div>
+	        <div class="text">
+	        	<img src="../images/360/text_1.png">
+	        	<img src="../images/360/text_2.png">
+	        	<img src="../images/360/text_3.png">
+	        	<img src="../images/360/text_4.png">
+	        	<img src="../images/360/text_5.png">
+	        	<img src="../images/360/text_6.png">
+	        	<img src="../images/360/text_7.png">
+	        	<img src="../images/360/text_8.png">
+	        </div>
+	        <div class="info"></div>
+	    </div>
+	    <div class="section second">
+	        <div class="shiled">
+	        	<img src="../images/shield_1_01.png">
+				<img src="../images/shield_1_02.png">
+				<img src="../images/shield_1_03.png">
+				<img src="../images/shield_1_04.png">
+				<img src="../images/shield_1_05.png">
+				<img src="../images/shield_1_06.png">
+				<img src="../images/shield_1_07.png">
+				<img src="../images/shield_1_08.png">
+				<img src="../images/shield_1_09.png">
+	        </div>
+	        <div class="info"></div>
+	    </div>
+	    <div class="section third">
+	        <div class="info"></div>
+	        <div class="circle">
+	        	<div class="rocket"></div>
+	        </div>
+	    </div>
+	    <div class="section fourth">
+	        <div class="search">
+	        	<div class="searchBar"></div>
+	        	<div class="searchText"></div>
+	        	<div class="searchResult"></div>
+	        </div>
+	        <div class="info"></div>
+	    </div>
+	    <!-- 作业  -->
+	   <!--  <div class="section fifth">
+	        <h3>第五屏</h3>
+	    </div> -->
+	</div>
+	<script src="jquery-1.12.4.js"></script>
+	<script src="jquery.fullPage.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+    		$('#360page').fullpage({
+    		sectionsColor:["#0da5d6","#2ab561","#de8910","#16ba9d","#0da5d6"],
+    		afterLoad:function(anchorLink,index){
+    			$(".section").removeClass("current");
+    			setTimeout(function(){
+    				$(".section").eq(index-1).addClass("current");
+    			},200);
+    			
+    		}
+    		});
+    		
+		});
+	</script>
+</body>
+</html>

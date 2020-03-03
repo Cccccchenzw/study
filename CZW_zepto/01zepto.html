@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zepto</title>
+    <style>
+    #div1 {
+        width: 100px;
+        height: 300px;
+        background: #aaaaaa;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <script src="js/zepto.js"></script>
+    <script src="js/touch.js"></script>
+    <script>
+    $(function(){
+        myZepto();
+    });
+    function myZepto(){
+        $("#div1").on("touchstart",function(){
+            console.log("---success---");
+        });
+        $("#div1").on("touchmove",function(){
+            console.log("---moving---");
+        });
+        $("#div1").on("touchend",function(){
+            console.log("---end---");
+        });
+        
+    }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>

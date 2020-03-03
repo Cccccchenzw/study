@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6模块化</title>
+</head>
+<body>
+  <script>
+    import {aa,bb} from 'XXXX.JS'
+    import * as aaa from "YYYYY.js"
+  </script>
+  <!-- 定义每个引入文件为模块 -->
+  <script src="XXXXX" type="module"></script>
+  <script src="YYYYY" type="module"></script>
+  <script src="ZZZZZ" type="module"></script>
+  <script>
+    let aa
+    let bb
+    let way = function(){
+      console.log("012345679")
+    }
+    function Person(){ 
+      var eat=function(){
+
+      }
+    }
+    export{aa,bb,way}
+    export function way(){
+
+   }
+    export class Person{
+
+    }
+    export default function(data){
+      console.log(data)
+  }
+  </script>  
+</body>
+</html>

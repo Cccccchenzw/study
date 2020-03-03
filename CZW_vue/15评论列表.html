@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue-评论列表</title>
+
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/2.3.0/css/bootstrap.css">
+</head>
+<body>
+    <div class="div1">
+         <box v-on:way='load'></box>
+        <ul class="list-group">
+            <li class="list-group-item" v-for='item in list' :key='item.id'>
+                <span class="badge">评论人： {{ item.user }}</span>
+                {{ item.content }}
+            </li>
+        </ul>
+        
+    </div>
+    <template id="tem1">
+        <div>
+           
+            <div class="form-group">
+                <label>评论人:</label>
+                <input type="text" class="form-control" v-model='user'>
+            </div>
+            <div class="form-group">
+                <label>评论内容:</label>
+                <textarea class="form-control" v-model='content'></textarea>
+            </div>
+            <div class="form-group">
+               <input type="button" value="发表评论" class="btn btn-primary " @click='add'>
+            </div>
+        </div>
+    </template>
+    <script>
+        var comment={}
+        var comBox = {
+            data(){
+                return{
+                    user:'',
+                    content:''
+                }
+            },
+            template:'#tem1',
+            methods:{
+                add(){
+                    comment={ id:Date.now() , user: this.user , content:this.content }
+                    // var list=JSON.parse(localStorage.getItem('cmtssssss')||'[]')
+                    // list.push(comment)             
+                    // localStorage.setItem('cmtssssss',JSON.stringify(list))
+                    this.user=this.content=''
+                    this.$emit('way')
+                }
+        }
+        }
+        var vm=new Vue({
+            el:".div1",
+            data:{
+               list:[
+                   { id:Date.now() , user: '李白' , content:'君不见黄河之水天上来' },
+                   { id:Date.now() , user: '杜甫' , content:'安得广厦千万间' },
+                   { id:Date.now() , user: '崔郊' , content:'从此萧郎是路人' }
+               ]
+            },
+            methods:{
+                load(){
+                    
+                    // var a=JSON.parse(localStorage.getItem('cmtssssss')||'[]')
+                    // console.log(a)
+                    if(!comment){
+                       alert("请重新输入")
+                    }else{
+                         this.list.unshift(comment)
+                    }
+                   
+                }
+            },
+            components:{
+                'box':comBox
+            },
+            created(){
+                // this.load()
+            }
+        })
+    </script>
+</body>
+</html>

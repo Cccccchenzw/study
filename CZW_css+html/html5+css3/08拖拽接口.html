@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>拖拽接口</title>
+	<style type="text/css">
+		div	{
+			border: 1px solid red;
+			width: 200px;
+			height: 100px;
+			margin: 5px;
+		}
+		p {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<p id="p1" draggable="true">我要被拖拽</p>
+		<p id="p2" draggable="true">拽我拖要被</p>
+	</div>
+	<div id="div2"></div>
+	<script type="text/javascript">
+		var obj=document.querySelector("#p1");
+		obj.ondragstart=function(){
+			console.log("开始拖拽了");
+		};
+		obj.ondragend=function(){
+			console.log("拖拽结束了");
+		};
+		obj.ondragleave=function(){
+			console.log("鼠标位置离开了所在父级元素的位置");
+		};
+		obj.ondrag=function(){
+			console.log("正在被拖拽");
+		};
+		var div2=document.querySelector("#div2");
+		var div1=document.querySelector("#div1");
+		div2.ondragenter=function(){
+			console.log("进入目标框范围");
+		};
+		div2.ondragover=function(e){
+			console.log("拖拽结束");
+			// return false
+			e.preventDefault();
+		};
+		//浏览器默认阻止ondrop事件 需要在ondragover事件上取消默认事件
+		div2.ondrop=function(){
+			console.log("鼠标松开");
+			div2.appendChild(obj);
+		};
+		div2.ondragleave=function(){
+			console.log("离开目标框范围");
+		};
+		div1.ondragover=function(e){
+			console.log("拖拽结束");
+			// return false
+			e.preventDefault();
+		};
+		//浏览器默认阻止ondrop事件 需要在ondragover事件上取消默认事件
+		div1.ondrop=function(){
+			console.log("鼠标松开");
+			div1.appendChild(obj);
+		};
+	</script>
+</body>
+</html>

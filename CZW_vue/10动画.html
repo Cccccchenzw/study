@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue-v-model</title>
+    <style>
+    .v-enter,
+    .v-leave-to {
+        opacity: 0;
+        transform: translate(100px,100px);
+    }
+    .v-enter-active,
+    .v-leave-active{
+        transition: all 1s ease;
+    }
+    .my-enter,
+    .my-leave-to {
+        opacity: 0;
+        transform: translate(500px,200px);
+    }
+    .my-enter-active,
+    .my-leave-active{
+        transition: all 1s ease;
+    }
+    
+    </style>
+
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <!-- <div class="div1">
+        <input type="button" value="toggle" @click="flag=!flag">
+        <h4 v-if='flag'>我是H4</h4>
+    </div> -->
+     <div class="div1">
+        <input type="button" value="toggle" @click="flag1=!flag1">
+        <transition>
+             <h4 v-if='flag1'>我是H4</h4>
+        </transition>  
+        <hr>
+        <input type="button" value="toggle" @click="flag2=!flag2">
+        <!-- 自定义控制组件 -->
+        <transition name='my'>
+            <h4 v-if='flag2'>我是H4</h4>
+       </transition>
+       
+    </div>
+    <script>
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                flag1:true,
+                flag2:true
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+	<style>
+		ul{
+			list-style-type: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+<ul>
+	<li>乔治分数</li>
+	<li>诺维斯基分数</li>
+	<li>科比分数</li>
+	<li>库里分数</li>
+	<li>詹姆斯分数</li>
+</ul>
+	<script>
+		var obj=document.getElementsByTagName("li");
+		for(var i=0;i<obj.length;i++){
+			obj[i].setAttribute("score",(10+5*i));
+			obj[i].onclick=function(){
+				alert(this.innerHTML+this.getAttribute("score"));
+			};
+		}
+	</script>
+
+</body>
+
+</html>

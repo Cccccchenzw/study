@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+
+    <script src="./lib/vue.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap.css">
+</head>
+<body>
+    <div class="div1">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                    <h3 class="panel-title">添加品牌</h3>
+              </div>
+              <div class="panel-body form-inline">
+                   <label>
+                       Id:
+                        <input type="text" class="form-control" v-model="id">
+                   </label>
+                   <label>
+                       Name:
+                       <!-- Vue.config.keyCodes.XXX(自定义名称)=number(键盘码) -->
+                        <input type="text" class="form-control" v-model="name" @keyup.enter="add">
+                    </label>
+               <input type="button" value="添加" class="btn btn-primary" @click="add">
+                    <label>
+                        搜索名字关键字:
+                        <input type="text" class="form-control" v-model="keywords" v-focus v-color="'blue'">
+                    </label>
+              </div>
+        </div>
+        
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in search(keywords)" :key="item.id">
+                    <td>{{ item.id }}</td>
+                    <td v-text="item.name"></td>
+                    <td>{{ item.ctime | dateFormat }}</td>
+                    <td><a href="#1" @click.prevent="del(item.id)" v-color>删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // 自定义指令 ：使用钩子函数 el为被绑定的原生的DOM对象 
+        Vue.directive("focus",{
+            // JS行为有关的尽量在inserted里面
+            inserted:function(el){
+                el.focus();
+            }
+        });
+        Vue.directive("color",{
+            // 绑定之后元素具有内联样式
+            bind:function(el,binding){
+                el.style.color=binding.value || "red";
+            }
+        });
+        Vue.filter('dateFormat',function(dateStr){
+            // dateStr作用？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
+            var time=new Date(dateStr);
+            var y=time.getFullYear();
+            // .toString.padStart(2, '0')执行错误问题
+            var m=time.getMonth()+1;
+            var d=time.getDate();
+            var hh=time.getHours();
+            var mm=time.getMinutes();
+            var ss=time.getSeconds();
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+        })
+        var vm=new Vue({
+            el:".div1",
+            data:{
+                id:"",
+                name:"",
+                keywords:"",
+                list:[
+                    {id:1 , name: "奔驰" , ctime: new Date() },
+                    {id:2 , name: "宝马" , ctime: new Date() },
+                    {id:3 , name: "奥迪" , ctime: new Date() }
+                ]
+            },
+            methods:{
+                add(){
+                    if(this.id == '' || this.name == ''){
+                        alert("数据为空!");
+                    }else{
+                        var car={id:this.id,name:this.name,ctime:new Date()};
+                        this.list.push(car);
+                        this.id=this.name="";
+                    }
+                 
+                },
+                del(id){
+                    this.list.some((item,i)=>{
+                        if(item.id == id){
+                            this.list.splice(i,1)
+                            return true;
+                        }
+                    })
+                },
+                search(keywords){
+                    var newList=[];
+                    this.list.forEach(item => {
+                        if (item.name.indexOf(keywords) != -1){
+                            newList.push(item);
+                        }
+                    });
+                    return newList
+                }
+            }
+        });
+    </script>
+</body>
+</html>

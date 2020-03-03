@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .header{
+            width: 100%;
+            background-color: darkmagenta;
+            height: 100px;
+        }
+        .left{
+            float: left;
+            width: 20%;
+            height: 500px;
+            background-color:darkorange;
+        }
+        .right{
+            float: right;
+            width: 80%;
+            height: 500px;
+            background-color:darkslateblue;
+        }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+<body>
+   
+    <div class="div1">
+        <router-view></router-view>
+        <router-view name='left'></router-view>
+        <router-view name='right'></router-view>
+    </div>
+    <script>
+        var header={
+            template:'<h1 class="header">header区域</h1>'
+        }
+        var leftBox={
+            template:'<h1 class="left">left区域</h1>'
+        }
+        var rightBox={
+            template:'<h1 class="right">right区域</h1>'
+        }
+        var routerObj=new VueRouter({
+            routes:[
+            //    { path :'/',component:header },
+            //    { path :'/left',component:left },
+            //    { path :'/right',component:right }
+                { path :'/',components:{
+                    'default':header,
+                    'left':leftBox,
+                    'right':rightBox} }
+            ]
+        })
+
+        var vm=new Vue({
+            el:".div1",
+            data:{
+               
+            },
+            methods:{},
+            router:routerObj
+        });
+    </script>
+</body>
+</html>

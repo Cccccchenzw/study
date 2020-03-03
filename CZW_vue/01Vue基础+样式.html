@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+    .red {
+        color: brown;
+    }
+    .italic {
+        font-style: italic;
+    }
+    .thin {
+        font-weight: 200;
+    }
+    .active {
+        letter-spacing: 0.5em;
+    }
+    </style>
+
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+    <!-- Vue实例所控制的元素区域 即为V -->
+    <div class="div1">
+        <!-- 普通加类方法 <p class="red italic">{{ message }}</p> -->
+        <!-- 绑定加类方法 <p :class="['red','italic']">{{ message }}</p> -->
+        <!-- 绑定加类方法+三元表达式 <p :class="['red','italic',flag?'active':'']">{{ message }}</p> -->
+        <!-- 绑定加类方法+提高可读性（三元表达式） <p :class="['red','italic',{'active':flag}]">{{ message }}</p> -->
+        <!-- 对象属性方法 -->
+        <p :class="classObj">{{ message }}</p>
+        <p :style="styleObj1">{{ message }}</p>
+        <p :style="[styleObj1,styleObj2]">{{ message }}</p>
+    </div>
+    <script>
+        // Vue对象就是 MVVM 中的VM 调度者
+        var vm=new Vue({
+            el:".div1",
+            // data就是M 保存每个页面的数据
+            data:{
+                message:"学习Vue!",
+                flag:true,
+                classObj:{red:true,thin:true,active:true,italic:true},
+                styleObj1:{color:"purple","font-weight":"400"},
+                styleObj2:{"font-size":"50px"}
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios</title>
+
+  <script src="./lib/vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+      <comp1></comp1>
+  </div>
+
+  <template id="app">
+    <div>
+      <h2>AXIOS</h2>
+    </div>
+  </template>
+
+  <script>
+    Vue.component('comp1',{
+      template: '#app',
+      data: function(){
+        return {}
+      }
+    })
+
+    const vm = new Vue({
+      el: '#div1'
+    })
+
+    // axios方式一
+    axios({
+      url: '/home/multidata',
+      method: 'get'
+    }).then(res=>{
+      Console.log(res)
+    })
+   // axios方式二
+    axios.get()
+    axios.post(url,data[config])
+  // axios并发请求
+  axios.all([
+    axios(),
+    axios()
+  ]).then(
+    //延展处理
+    axios.spread((res1,res2)=>{})
+  )
+//全局配置
+axios.defaults.baseURL = 'http://123.207.32.32:8000'
+axios.defaults.timeout = 5000
+
+//创建对用的Axios实例 解决分布式服务器
+const instance1 = axios.creat({
+  baseURL = 'http://123.207.32.32:8000',
+  timeout = 5000
+})
+instance1({
+  url: '/home/multidata'
+}).then(res=>{})
+
+const instance2 = axios.creat({
+  baseURL = 'http://222.22.22.32:8000',
+  timeout = 5000
+})
+instance2({
+  url: '/home/data'
+}).then(res=>{})
+//封装一个对象 将所引用的框架引入这个汇总的对象 增加耦合
+
+export function request(config) {
+  return new Promise((resolve,reject)=>{
+    const instance3 = axios.create({
+      baseURL: 'http://222.22.22.32:8000',
+      timeout: 5000
+    })
+    instance3(config).then(res=>{
+      resolve(res)
+    }).catch(err=>{
+      reject(err)
+    })
+  })
+}
+//终极方案
+export function request(config) {
+    const instance4 = axios.create({
+      baseURL: 'http://222.22.22.32:8000',
+      timeout: 5000
+    })
+
+  //拦截器
+  instance4.interceptors.request.use(config => {
+    console.log(config)
+    //请求拦截 然后根据条件是否返回
+    return config
+  }, error => {
+    console.log(error)
+  })
+//响应拦截
+  instance4.interceptors.response.use()
+
+    return instance4(config)
+    //instance4(config)这个函数config本就是Promise
+  }
+
+
+
+
+
+  </script>
+
+
+
+
+</body>
+</html>

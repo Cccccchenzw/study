@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>轮播图</title>
+	<style type="text/css">
+		.div1 {
+			width: 600px;
+			height: 400px;
+			margin: 200px auto;
+			border: 2px solid red;
+			position: relative;
+		}
+		img {
+			width: 600px;
+			height: 400px;
+			position: absolute;
+		}
+		.img1 {
+			z-index: 999;
+		}
+		.span1 {
+			width: 50px;
+			height: 50px;
+			background-color: gray;
+			opacity: 0.5;
+			font-size: 35px;
+			text-align: center;
+			line-height: 50px;
+			position: absolute;
+			cursor:pointer;
+			display:none;
+			z-index: 1000;
+		}
+		.left {
+			left: 0;
+			top: 175px;
+		}
+		.right {
+			right: 0;
+			top: 175px;
+		}
+		.div2 {
+			position: absolute;
+			bottom: 20px;
+			left: 300px;
+			background-color: rgba(255,0,0,.5);
+			z-index: 1001;
+			cursor: pointer;
+			opacity: 0.8;
+		}
+		.current {
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<img src="../1.jpg" class="img1">
+		<img src="../2.jpg">
+		<img src="../3.jpg">
+		<img src="../4.jpg">
+		<img src="../5.jpg">
+		<span class="span1 left"><</span>
+		<span class="span1 right">></span>
+		<div class="div2">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span>5</span>
+		</div>
+	</div>
+<script src="jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	// $(document).ready(function(){}) 两种入口函数 
+	$(function(){
+		$(".div2 span").eq(0).css("backgroundColor","orange");
+		var a=setInterval(move,1000);
+		$(".div1").mouseenter(function(){
+			clearInterval(a);//如何解决定时器叠加问题
+			$(".span1").show();
+		});
+		$(".div1").mouseleave(function(){
+			$(".span1").hide();
+			a=setInterval(move,1000);// var a=setInterval(move,1000);错误写法 相当于局部变量
+			//相当于又对a赋值 当清楚定时器的时候 清楚的是外面的全局变量a 而不是此处的局部变量a
+		});
+		var index=0;
+		$("span.right").click(move);
+		function move(){
+			$(".div2 span").css("backgroundColor","");
+			index++;
+			if (index==5) {
+				index=0;
+			}
+			$(".div2 span").eq(index).css("backgroundColor","orange");
+			$("img").eq(index).show().siblings("img").hide();
+		}
+		$("span.left").click(function(){
+			$(".div2 span").css("backgroundColor","");
+			index--;
+			if (index==-1) {
+				index=4;
+			}
+			$(".div2 span").eq(index).css("backgroundColor","orange");
+			$("img").eq(index).show().siblings("img").hide();
+		});
+		//数字按钮切换图片 与左右切换要吻合
+		for (var i = 0; i < $(".div2 span").length; i++) {
+			$(".div2 span").eq(i).attr("number",i);//设置值 方便获取对应的角标
+			$(".div2 span").eq(i).mouseenter(function(){
+				$(".div2 span").css("backgroundColor","");
+				$(this).css("backgroundColor","orange");
+				 $("img").eq($(this).attr("number")).show().siblings("img").hide();	
+				 index=$(this).attr("number");
+			});
+			}
+	});
+
+</script>
+</body>
+</html>

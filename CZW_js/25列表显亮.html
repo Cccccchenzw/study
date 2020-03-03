@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$前端学习$</title>
+	<style>
+		ul{
+			list-style-type: none;
+			cursor: pointer;
+		}
+		div{
+			width: 200px;
+			height: 50px;
+			background-color: hotpink;
+			margin-top: 20px; 
+		}
+		.cls{
+			background-color: yellow;
+		}
+	</style>
+</head>
+
+<body>
+
+	<ul id="ul1">
+		<li>奔驰</li>
+		<li>宝马</li>
+		<li>奥迪</li>
+		<li>丰田</li>
+		<li>大众</li>
+		<li>马自达</li>	
+	</ul>
+	<script src="common.js"></script>
+	<script>
+		var obj=myDX("ul1").getElementsByTagName("li");
+		for(var i=0;i<obj.length;i++){
+			obj[i].onmouseover=function(){
+				this.style.backgroundColor="red";
+			}
+			obj[i].onmouseout=function(){
+				this.style.backgroundColor="";
+			}
+		}
+	</script>
+	<br>
+	<br>
+	<!-- 根据name值获取元素 -->
+	<input type="button" value="改变特定值" id="but1" />
+	<br>
+	<input type="text" value="我是谁" name="zhuzhu" />
+	<br>
+	<input type="text" value="我是谁" name="zz" />
+	<br>
+	<input type="text" value="我是谁" name="zhuzhu" />
+	<br>
+	<input type="text" value="我是谁" name="zz" />
+	<br>
+	<input type="text" value="我是谁" name="zhuzhu" />
+	<br>
+	<input type="text" value="我是谁" name="zz" />
+	<script>
+		myDX("but1").onclick=function(){
+			var obj2=document.getElementsByName("zhuzhu");
+			for(var i=0;i<obj2.length;i++){
+				obj2[i].value="猪猪";
+			}
+		}
+	</script>
+	<br>
+	<br>
+	<!-- 根据样式获取元素 -->
+	<p>这是第一个p标签</p>
+	<p class="cls">这是第二个p标签</p>
+	<span>这是第一个span标签</span>
+	<br>
+	<span class="cls">这是第二个span标签</span>
+	<div class="cls">这是第一个div标签</div>
+	<div>这是第二个div标签</div>
+	<input type="button" value="改变指定CLASSNAME颜色" id="but2" />
+	<script>
+		myDX("but2").onclick=function(){
+			var obj3=document.getElementsByClassName("cls");
+			for(var i=0;i<obj3.length;i++){
+				console.log(obj3);
+				obj3[i].style.backgroundColor="hotpink";
+			}
+		}
+	</script>
+
+</body>
+
+</html>
